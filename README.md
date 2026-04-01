@@ -1,160 +1,192 @@
 # OpenRouter Project
 
-A modern web application built with Turborepo, showcasing Next.js applications and shared components.
+A modern, full-stack web application built with TypeScript, React, and Elysia, demonstrating monorepo architecture using Turborepo. This project provides a scalable foundation for building web applications with multiple frontends and backends sharing common utilities.
 
 ## Author
 
 - **GitHub**: [@lakshyaaa76](https://github.com/lakshyaaa76)
 - **Email**: colossalmonk@gmail.com
 
-## Project Overview
+## 🚀 Project Overview
 
-This project demonstrates a monorepo architecture using Turborepo with multiple Next.js applications and shared packages.
+OpenRouter is a comprehensive web application platform featuring:
+- **Dashboard Frontend**: Modern React-based user interface with Tailwind CSS
+- **API Backend**: RESTful API built with Elysia framework
+- **Primary Backend**: Core backend services
+- **Shared Database**: PostgreSQL with Prisma ORM for data management
 
-## What's inside?
+## 🛠️ Tech Stack
 
-This Turborepo includes the following packages/apps:
+### Frontend
+- **React 19** - Modern React with latest features
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router v7** - Client-side routing
+- **TanStack Query** - Server state management
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Beautiful icons
 
-### Apps and Packages
+### Backend
+- **Elysia** - Modern, fast web framework for Bun
+- **TypeScript** - Type-safe backend development
+- **Prisma** - Next-generation ORM
+- **PostgreSQL** - Robust relational database
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Development Tools
+- **Turborepo** - High-performance build system for monorepos
+- **Bun** - Fast JavaScript runtime and package manager
+- **ESLint** - Code linting and formatting
+- **Prettier** - Code formatting
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 📁 Project Structure
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```
+openrouter/
+├── apps/
+│   ├── dashboard-frontend/    # React frontend application
+│   ├── api-backend/          # Elysia API backend
+│   └── primary-backend/      # Core backend services
+├── packages/
+│   └── db/                   # Shared database schema and utilities
+├── turbo.json               # Turborepo configuration
+└── package.json             # Root package configuration
 ```
 
-Without global `turbo`, use your package manager:
+## 📋 Prerequisites
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v18 or higher)
+- **Bun** (v1.3.10 or higher)
+- **PostgreSQL** (for database)
+- **Git** (for version control)
+
+## 🚀 Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/lakshyaaa76/openrouter.git
+cd openrouter
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### 2. Install Dependencies
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Using Bun (recommended):
 
-```sh
-turbo build --filter=docs
+```bash
+bun install
 ```
 
-Without global `turbo`:
+Alternatively, using npm:
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+npm install
 ```
 
-### Develop
+### 3. Environment Setup
 
-To develop all apps and packages, run the following command:
+Create a `.env` file in the root directory:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+```env
+# Database Configuration
+DATABASE_URL="postgresql://username:password@localhost:5432/openrouter"
 
-```sh
-cd my-turborepo
-turbo dev
+# Application Configuration
+NODE_ENV="development"
+PORT=3000
 ```
 
-Without global `turbo`, use your package manager:
+### 4. Database Setup
 
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+Run database migrations:
+
+```bash
+bun run db:migrate
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Generate Prisma client:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
+```bash
+bun run db:generate
 ```
 
-Without global `turbo`:
+## 🏃‍♂️ Development
 
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+### Start All Services
+
+```bash
+bun run dev
 ```
 
-### Remote Caching
+This will start:
+- Dashboard Frontend: `http://localhost:3001`
+- API Backend: `http://localhost:3000`
+- Primary Backend: `http://localhost:3002`
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Individual Services
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Start only the dashboard frontend:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
+```bash
+cd apps/dashboard-frontend
+bun run dev
 ```
 
-Without global `turbo`, use your package manager:
+Start only the API backend:
 
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```bash
+cd apps/api-backend
+bun run dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## 🔧 Available Scripts
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- `bun run dev` - Start all applications in development mode
+- `bun run build` - Build all applications for production
+- `bun run lint` - Run ESLint across all packages
+- `bun run format` - Format code with Prettier
+- `bun run check-types` - Type check all TypeScript files
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## 🏗️ Build & Deployment
 
-```sh
-turbo link
+### Build for Production
+
+```bash
+bun run build
 ```
 
-Without global `turbo`:
+### Deploy to Production
 
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+1. Build the application
+2. Set up production environment variables
+3. Deploy to your preferred hosting platform
 
-## Useful Links
+## 📊 Features
 
-Learn more about the power of Turborepo:
+- **Monorepo Architecture** - Organized codebase with shared packages
+- **Type Safety** - Full TypeScript coverage across frontend and backend
+- **Modern UI** - Responsive design with Tailwind CSS
+- **API Integration** - RESTful APIs with Elysia
+- **Database Management** - PostgreSQL with Prisma migrations
+- **Developer Experience** - Hot reload, fast builds, and great tooling
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🔗 Useful Links
+
+- [Turborepo Documentation](https://turborepo.dev/docs)
+- [Elysia Documentation](https://elysiajs.com/)
+- [React Documentation](https://react.dev/)
+- [Prisma Documentation](https://www.prisma.io/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
