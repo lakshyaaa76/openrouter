@@ -1,14 +1,15 @@
-# Turborepo starter
+# OpenRouter Project
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern web application built with Turborepo, showcasing Next.js applications and shared components.
 
-## Using this example
+## Author
 
-Run the following command:
+- **GitHub**: [@lakshyaaa76](https://github.com/lakshyaaa76)
+- **Email**: colossalmonk@gmail.com
 
-```sh
-npx create-turbo@latest
-```
+## Project Overview
+
+This project demonstrates a monorepo architecture using Turborepo with multiple Next.js applications and shared packages.
 
 ## What's inside?
 
